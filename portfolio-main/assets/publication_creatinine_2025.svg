@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="RSC Advances 2025 publication thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F4F8"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="256" height="256" rx="24" fill="url(#bg)"/>
+  <rect x="18" y="18" width="220" height="220" rx="18" fill="#FFFFFF" stroke="#088395" stroke-opacity="0.25"/>
+  <g fill="#0A4D68">
+    <path d="M78 72h100a10 10 0 0 1 10 10v92a10 10 0 0 1-10 10H78a10 10 0 0 1-10-10V82a10 10 0 0 1 10-10zm6 18v4h88v-4H84zm0 16v4h88v-4H84zm0 16v4h72v-4H84zm0 16v4h88v-4H84z" opacity="0.9"/>
+  </g>
+  <text x="128" y="206" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#088395" font-weight="700">RSC Advances · 2025</text>
+  <text x="128" y="228" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#0A4D68" opacity="0.85">Creatinine sensing platform</text>
+</svg>
