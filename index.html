@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Inzamamul Haque - Biomedical Engineer</title>
+
+    <!-- Fonts: preconnect + link (replaces render-blocking @import). Weight 500 now loaded. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="index.css">
     <script>
         tailwind.config = {
@@ -27,12 +33,66 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
+        /* ============ TYPE SCALE (single source of truth) ============ */
+        :root {
+            --fs-xs: .75rem;    /* captions, tags, badges only */
+            --fs-sm: .875rem;   /* lists, meta, dense content */
+            --fs-base: 1rem;    /* body */
+            --fs-lg: 1.25rem;   /* card titles */
+            --fs-xl: 1.5rem;    /* featured / panel titles */
+            --fs-h1: clamp(2rem, 7vw, 4.5rem);
+            --fs-h2: clamp(1.75rem, 4vw, 2.25rem);
+            --lh-body: 1.65;
+            --lh-tight: 1.25;
         }
-        
+
+        body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+        p, li { line-height: var(--lh-body); }
+        h1, h2, h3, h4 { line-height: var(--lh-tight); }
+
+        .fs-xs { font-size: var(--fs-xs); }
+        .fs-sm { font-size: var(--fs-sm); }
+        .fs-base { font-size: var(--fs-base); }
+        .fs-lg { font-size: var(--fs-lg); }
+        .fs-xl { font-size: var(--fs-xl); }
+        .hero-title { font-size: var(--fs-h1); line-height: 1.1; }
+        .section-title { font-size: var(--fs-h2); line-height: 1.15; }
+
+        /* Shared components (single-class selectors, no attribute hacks) */
+        .card-surface {
+            background: #fff;
+            border: 1px solid rgba(8,131,149,.18);
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(10,77,104,.08);
+        }
+        .card-surface:hover { border-color: rgba(8,131,149,.55); }
+        .stat-card {
+            background: #F4FAFC;
+            border: 1px solid rgba(8,131,149,.18);
+            border-radius: .75rem;
+        }
+        .tag {
+            display: inline-block;
+            font-size: var(--fs-xs);
+            line-height: 1.1rem;
+            font-weight: 500;
+            padding: .2rem .6rem;
+            border-radius: 9999px;
+            background: rgba(8,131,149,.08);
+            color: #0A4D68;
+            border: 1px solid rgba(8,131,149,.18);
+        }
+        .badge {
+            display: inline-block;
+            font-size: var(--fs-xs);
+            line-height: 1.1rem;
+            font-weight: 700;
+            padding: .2rem .6rem;
+            border-radius: 9999px;
+            background: #088395;
+            color: #fff;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -80,7 +140,7 @@
 
         .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(8, 131, 149, 0.18);
         }
 
         /* Typing Effect */
@@ -133,26 +193,10 @@
             }
         }
 
-        /* Mobile responsive fixes */
+        /* Mobile: safety net only. Test by removing; find the real overflow source. */
         @media (max-width: 768px) {
-            .text-5xl {
-                font-size: 2rem;
-            }
-            .text-7xl {
-                font-size: 2.5rem;
-            }
-            .text-xl {
-                font-size: 1.125rem;
-            }
-            .text-2xl {
-                font-size: 1.25rem;
-            }
             section {
-                overflow-x: hidden !important;
-            }
-            .max-w-7xl {
-                max-width: 100%;
-                overflow-x: hidden;
+                overflow-x: clip;
             }
         }
     </style>
@@ -164,33 +208,33 @@
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-3">
                     <div>
-                        <div class="text-xl font-bold text-primary">
+                        <div class="fs-lg font-bold text-primary">
                             Inzamamul Haque
                         </div>
-                        <div class="text-xs text-gray-500 font-medium">Biomedical Engineer</div>
+                        <div class="fs-xs text-gray-600 font-medium">Biomedical Engineer</div>
                     </div>
                 </div>
                 <div class="hidden md:flex space-x-1">
                     <a href="#home" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-accent hover:bg-accent/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-home mr-1"></i>Home
+                        <i class="fas fa-home mr-1 hidden lg:inline"></i>Home
                     </a>
                     <a href="#about" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-accent hover:bg-accent/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-user mr-1"></i>About
+                        <i class="fas fa-user mr-1 hidden lg:inline"></i>About
                     </a>
                     <a href="#research" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-accent hover:bg-accent/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-flask mr-1"></i>Research
+                        <i class="fas fa-flask mr-1 hidden lg:inline"></i>Research
                     </a>
                     <a href="#projects" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-accent hover:bg-accent/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-project-diagram mr-1"></i>Projects
+                        <i class="fas fa-project-diagram mr-1 hidden lg:inline"></i>Projects
                     </a>
                     <a href="#skills" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-accent hover:bg-accent/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-cogs mr-1"></i>Skills
+                        <i class="fas fa-microscope mr-1 hidden lg:inline"></i>Skills
                     </a>
                     <a href="#contact" class="px-4 py-2 bg-accent text-white rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
-                        <i class="fas fa-envelope mr-1"></i>Contact
+                        <i class="fas fa-envelope mr-1 hidden lg:inline"></i>Contact
                     </a>
                 </div>
-                <button class="md:hidden focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menu-btn">
+                <button class="md:hidden focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars text-gray-700 text-2xl"></i>
                 </button>
             </div>
@@ -211,7 +255,7 @@
                     <i class="fas fa-project-diagram mr-2"></i>Projects
                 </a>
                 <a href="#skills" class="block px-4 py-3 text-gray-700 hover:text-accent hover:bg-accent/5 rounded-lg transition font-medium">
-                    <i class="fas fa-cogs mr-2"></i>Skills
+                    <i class="fas fa-microscope mr-2"></i>Skills
                 </a>
                 <a href="#contact" class="block px-4 py-3 bg-accent text-white rounded-lg transition font-medium text-center">
                     <i class="fas fa-envelope mr-2"></i>Contact
@@ -239,10 +283,10 @@
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                     </span>
-                    <span class="text-sm font-medium opacity-90">Actively Researching</span>
+                    <span class="fs-sm font-medium opacity-90">Actively Researching</span>
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 tracking-tight px-4 text-white">
+                <h1 class="hero-title font-extrabold mb-4 tracking-tight px-4 text-white">
                     Md. Inzamamul Haque Shishir
                 </h1>
                 
@@ -304,7 +348,7 @@
     <!-- About Section -->
     <section id="about" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+            <h2 class="section-title font-bold text-center mb-4 text-primary">
                 About Me
             </h2>
             <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
@@ -324,50 +368,20 @@
                 </div>
 
                 <div class="order-2 md:order-1">
-                    <h3 class="text-2xl font-bold mb-4 text-primary">Research Focus</h3>
                     <p class="text-gray-700 leading-relaxed mb-6">
-                        I'm a dedicated 4th year Biomedical Engineering student at Jashore University of Science and Technology (JUST) with hands-on experience in biosensor device development, machine learning applications in healthcare, and two peer-reviewed publications.
+                        I am a Biomedical Engineering graduate from Jashore University of Science and Technology with three years of hands-on research in electrochemical biosensors. My work spans sensor fabrication and surface modification, nanomaterial synthesis, electrochemical characterization, and real-sample analysis, and I&rsquo;ve co-authored two peer-reviewed publications.
                     </p>
                     <p class="text-gray-700 leading-relaxed mb-6">
-                        My research focuses on developing low-cost, accessible diagnostic technologies for resource-limited settings, particularly in wearable biosensors and lab-on-chip platforms. I combine electrochemical sensing with machine learning algorithms to create intelligent healthcare monitoring systems.
+                        My research centers on low-cost, accessible diagnostic tools for resource-limited settings, particularly wearable biosensors and lab-on-chip platforms. Through my thesis on metabolite biomarkers in breast cancer, I&rsquo;ve developed a strong interest in cancer diagnosis, especially how biomarker-based detection could identify disease earlier and how sensing technologies could bring that testing closer to patients. I enjoy working across disciplines, from the lab bench to code, to build intelligent systems that are practical as well as technically sound.
                     </p>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-accent/10 p-4 rounded-lg">
-                            <div class="text-3xl font-bold text-accent">3.1</div>
-                            <div class="text-sm text-gray-600">CGPA (7/8 semesters)</div>
+                        <div class="stat-card p-4">
+                            <div class="text-3xl font-bold text-accent">3.20</div>
+                            <div class="fs-sm text-gray-600">CGPA</div>
                         </div>
-                        <div class="bg-accent/10 p-4 rounded-lg">
-                            <div class="text-3xl font-bold text-accent">2026</div>
-                            <div class="text-sm text-gray-600">Expected Graduation</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="order-3 bg-white p-8 rounded-2xl shadow-xl border border-accent/10 hover:shadow-2xl transition duration-300">
-                    <h3 class="text-xl font-bold mb-6 text-primary">Research Pipeline</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
-                            <div>
-                                <div class="font-semibold">Biosensor Development</div>
-                                <div class="text-sm text-gray-600">Electrochemical sensing platforms</div>
-                            </div>
-                        </div>
-                        <div class="h-8 w-0.5 bg-accent ml-6"></div>
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
-                            <div>
-                                <div class="font-semibold">Data Analysis</div>
-                                <div class="text-sm text-gray-600">Feature extraction & interpretation</div>
-                            </div>
-                        </div>
-                        <div class="h-8 w-0.5 bg-accent ml-6"></div>
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-dark rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
-                            <div>
-                                <div class="font-semibold">Machine Learning</div>
-                                <div class="text-sm text-gray-600">Predictive modeling & classification</div>
-                            </div>
+                        <div class="stat-card p-4">
+                            <div class="text-3xl font-bold text-accent">Jul 2026</div>
+                            <div class="fs-sm text-gray-600">Graduated</div>
                         </div>
                     </div>
                 </div>
@@ -378,30 +392,30 @@
     <!-- Research & Publications -->
     <section id="research" class="py-20 bg-lightgreen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+            <h2 class="section-title font-bold text-center mb-4 text-primary">
                 Research & Publications
             </h2>
             <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
 
             <!-- Featured Publications -->
             <div class="max-w-4xl mx-auto mb-12">
-                <div class="bg-white rounded-2xl shadow-2xl p-8 card-hover border-l-4 border-accent hover:shadow-accent/20 transition-all duration-300">
+                <div class="card-surface card-hover p-8">
                     <div class="flex items-start mb-4">
                         <img src="assets/publication_lcysteine_2026.svg" alt="Microchemical Journal 2026 publication" class="w-20 h-20 rounded-xl mr-4 border border-accent/10 bg-white" loading="lazy">
                         <div class="flex-1">
-                            <span class="bg-accent text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                            <span class="badge">
                                 <i class="fas fa-star mr-1"></i>PUBLISHED 2026
                             </span>
-                            <h3 class="text-2xl font-bold mt-3 mb-3 text-gray-900 leading-tight">
+                            <h3 class="fs-xl font-bold mt-3 mb-3 text-gray-900">
                                 Enhanced electrochemical sensing of L-cysteine in human blood serum using a Ti3C2Tx/carbon black nanocomposite hybrid structure
                             </h3>
                             <p class="text-gray-600 mb-4">
                                 Published in <span class="font-semibold text-primary">Microchemical Journal, 2026</span>
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">Electrochemistry</span>
-                                <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">Nanocomposite</span>
-                                <span class="bg-dark/10 text-dark text-xs font-semibold px-3 py-1 rounded-full">Serum Analysis</span>
+                                <span class="tag">Electrochemistry</span>
+                                <span class="tag">Nanocomposite</span>
+                                <span class="tag">Serum Analysis</span>
                             </div>
                             <a href="https://doi.org/10.1016/j.microc.2026.116817" target="_blank" 
                                class="inline-flex items-center text-accent hover:text-primary transition font-semibold group">
@@ -414,23 +428,23 @@
             </div>
 
             <div class="max-w-4xl mx-auto mb-12">
-                <div class="bg-white rounded-2xl shadow-2xl p-8 card-hover border-l-4 border-accent hover:shadow-accent/20 transition-all duration-300">
+                <div class="card-surface card-hover p-8">
                     <div class="flex items-start mb-4">
                         <img src="assets/publication_creatinine_2025.svg" alt="RSC Advances 2025 publication" class="w-20 h-20 rounded-xl mr-4 border border-accent/10 bg-white" loading="lazy">
                         <div class="flex-1">
-                            <span class="bg-accent text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                            <span class="badge">
                                 <i class="fas fa-star mr-1"></i>PUBLISHED 2025
                             </span>
-                            <h3 class="text-2xl font-bold mt-3 mb-3 text-gray-900 leading-tight">
+                            <h3 class="fs-xl font-bold mt-3 mb-3 text-gray-900">
                                 A portable smartphone-based electrochemical sensing platform for rapid and sensitive detection of creatinine in blood serum
                             </h3>
                             <p class="text-gray-600 mb-4">
                                 Published in <span class="font-semibold text-primary">RSC Advances, 2025</span>
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">Biosensors</span>
-                                <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">Electrochemistry</span>
-                                <span class="bg-dark/10 text-dark text-xs font-semibold px-3 py-1 rounded-full">Point-of-Care</span>
+                                <span class="tag">Biosensors</span>
+                                <span class="tag">Electrochemistry</span>
+                                <span class="tag">Point-of-Care</span>
                             </div>
                             <a href="https://doi.org/10.1039/D5RA03128A" target="_blank" 
                                class="inline-flex items-center text-accent hover:text-primary transition font-semibold group">
@@ -444,21 +458,21 @@
 
             <!-- Conferences (Autoplay Gallery) -->
             <div class="max-w-4xl mx-auto mb-12">
-                <div class="bg-white rounded-2xl shadow-xl p-8 border border-accent/10 hover:shadow-2xl transition-all duration-300">
-                    <h3 class="text-xl font-bold text-primary mb-6">Conference Highlights</h3>
+                <div class="card-surface p-8 hover:shadow-2xl transition-all duration-300">
+                    <h3 class="fs-lg font-bold text-primary mb-6">Conference Highlights</h3>
                     <div class="grid md:grid-cols-2 gap-8 items-start">
                         <div class="rounded-2xl overflow-hidden border border-accent/10 bg-lightgreen">
                             <img id="conference-gallery-image" src="assets/23rd%20SCAC%202024%20Conference/1744902628290.jpg" alt="Conference photo" class="w-full h-72 object-cover" loading="eager">
                         </div>
                         <div>
-                            <div id="conference-gallery-title" class="text-xl font-bold text-gray-900"></div>
-                            <div id="conference-gallery-meta" class="text-sm text-gray-600 mt-2"></div>
-                            <div id="conference-gallery-theme" class="text-sm text-gray-600 mt-2"></div>
-                            <div class="mt-6 inline-flex items-center px-3 py-2 rounded-lg bg-accent/10 text-accent text-sm font-semibold">
+                            <div id="conference-gallery-title" class="fs-lg font-bold text-gray-900"></div>
+                            <div id="conference-gallery-meta" class="fs-sm text-gray-600 mt-2"></div>
+                            <div id="conference-gallery-theme" class="fs-sm text-gray-600 mt-2"></div>
+                            <div class="mt-6 inline-flex items-center px-3 py-2 rounded-lg bg-accent/10 text-primary fs-sm font-semibold">
                                 <i class="fas fa-images mr-2"></i>
                                 <span id="conference-gallery-progress">Loading photos…</span>
                             </div>
-                            <p class="text-xs text-gray-500 mt-3">Autoplay gallery (shuffled). Finishes one conference, then switches to the next.</p>
+                            <p class="fs-sm text-gray-600 mt-3">Autoplay gallery (shuffled). Finishes one conference, then switches to the next.</p>
                         </div>
                     </div>
                 </div>
@@ -472,23 +486,19 @@
                             <i class="fas fa-flask text-4xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold">Research Affiliation</h3>
-                            <p class="opacity-90 text-lg">Laboratory of Nano-bio and Advanced Materials Engineering (NAME)</p>
+                            <h3 class="fs-xl font-bold">Undergraduate Researcher</h3>
+                            <p class="opacity-90 fs-base">Laboratory of Nano bio and Advanced Materials Engineering (NAME Lab)</p>
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2 gap-6 mt-6">
-                        <div class="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                            <div class="text-sm opacity-75 mb-1"><i class="fas fa-university mr-2"></i>Institution</div>
-                            <div class="font-semibold text-lg">Jashore University of Science and Technology</div>
-                        </div>
-                        <div class="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                            <div class="text-sm opacity-75 mb-1"><i class="fas fa-clock mr-2"></i>Duration</div>
-                            <div class="font-semibold text-lg">2023 - Present</div>
+                        <div class="md:col-span-2 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+                            <div class="fs-sm opacity-75 mb-1"><i class="fas fa-clock mr-2"></i>Duration</div>
+                            <div class="font-semibold fs-base">2023 - 2026</div>
                         </div>
                         <div class="md:col-span-2 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                            <div class="text-sm opacity-75 mb-1"><i class="fas fa-user-graduate mr-2"></i>Supervised by</div>
-                            <div class="font-semibold text-lg">Dr. Md. Zaved Hossain Khan</div>
-                            <div class="text-sm opacity-90 mt-1">Professor & Chairman, Department of Chemical Engineering</div>
+                            <div class="fs-sm opacity-75 mb-1"><i class="fas fa-user-graduate mr-2"></i>Supervisor</div>
+                            <div class="font-semibold fs-base">Dr. Md. Zaved Hossain Khan</div>
+                            <div class="fs-base opacity-90 mt-1">Professor & Chairman, Department of Chemical Engineering, Jashore University of Science and Technology</div>
                         </div>
                     </div>
                 </div>
@@ -499,34 +509,34 @@
     <!-- Projects -->
     <section id="projects" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+            <h2 class="section-title font-bold text-center mb-4 text-primary">
                 Projects
             </h2>
             <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
-                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="flex flex-wrap justify-center gap-8">
                 <!-- Project 1 - HealthTracker -->
-                <div class="bg-white rounded-2xl p-6 card-hover border border-accent/20 shadow-lg hover:shadow-2xl transition-all duration-300">
+                <div id="project-healthtracker" class="card-surface card-hover p-6 w-full md:w-[calc(50%-1rem)] lg:w-[calc((100%-4rem)/3)]">
                     <img src="assets/project_healthtracker.svg" alt="HealthTracker project" class="w-full h-36 object-cover rounded-xl mb-4 border border-accent/10 bg-white" loading="lazy">
                     <div class="flex items-center mb-4">
                         <div class="bg-accent text-white p-3 rounded-lg mr-4 shadow-lg">
                             <i class="fas fa-heartbeat text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900">HealthTracker</h3>
-                            <p class="text-sm text-gray-600"><i class="fas fa-calendar mr-1"></i>2024</p>
+                            <h3 class="fs-lg font-bold text-gray-900">HealthTracker</h3>
+                            <p class="fs-sm text-gray-600"><i class="fas fa-calendar mr-1"></i>2024</p>
                         </div>
                     </div>
                     <p class="text-gray-700 mb-4 leading-relaxed">
                         Machine Learning-Enabled Dual Sensor Platform for comprehensive diabetic care monitoring. Integrated real-time glucose and ECG monitoring with intelligent alert systems.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">Machine Learning</span>
-                        <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">Biosensors</span>
-                        <span class="bg-dark/10 text-dark text-xs font-semibold px-3 py-1 rounded-full">Data Analysis</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Biosensors</span>
+                        <span class="tag">Data Analysis</span>
                     </div>
                     <div class="border-t border-gray-200 pt-4">
-                        <div class="text-sm font-semibold text-gray-700 mb-2">Key Features:</div>
-                        <ul class="text-sm text-gray-600 space-y-1">
+                        <div class="fs-sm font-bold text-primary mb-2">Key Features:</div>
+                        <ul class="fs-sm text-gray-600 space-y-1">
                             <li><i class="fas fa-check text-accent mr-2"></i>Dual sensor integration</li>
                             <li><i class="fas fa-check text-accent mr-2"></i>Real-time monitoring</li>
                             <li><i class="fas fa-check text-accent mr-2"></i>ML-based predictions</li>
@@ -534,46 +544,16 @@
                     </div>
                 </div>
 
-                <!-- Project 2 - Creatinine Detection -->
-                <div class="bg-white rounded-2xl p-6 card-hover border border-accent/20 shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <img src="assets/project_creatinine_sensor.svg" alt="Creatinine Sensor project" class="w-full h-36 object-cover rounded-xl mb-4 border border-accent/10 bg-white" loading="lazy">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-accent text-white p-3 rounded-lg mr-4 shadow-lg">
-                            <i class="fas fa-vial text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900">Creatinine Sensor</h3>
-                            <p class="text-sm text-gray-600"><i class="fas fa-calendar mr-1"></i>2024-2025</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-4 leading-relaxed">
-                        Smartphone-based electrochemical sensing platform for rapid and sensitive detection of creatinine in blood serum. Published in RSC Advances.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">Electrochemistry</span>
-                        <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">POC Device</span>
-                        <span class="bg-dark/10 text-dark text-xs font-semibold px-3 py-1 rounded-full">Published</span>
-                    </div>
-                    <div class="border-t border-gray-200 pt-4">
-                        <div class="text-sm font-semibold text-gray-700 mb-2">Key Features:</div>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li><i class="fas fa-check text-accent mr-2"></i>Portable & affordable</li>
-                            <li><i class="fas fa-check text-accent mr-2"></i>High sensitivity</li>
-                            <li><i class="fas fa-check text-accent mr-2"></i>Smartphone integration</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Project 3 - Hospital Finder -->
-                <div class="bg-white rounded-2xl p-6 card-hover border border-accent/20 shadow-lg hover:shadow-2xl transition-all duration-300">
+                <!-- Project 2 - Hospital Finder -->
+                <div id="project-hospital-finder" class="card-surface card-hover p-6 w-full md:w-[calc(50%-1rem)] lg:w-[calc((100%-4rem)/3)]">
                     <img src="assets/project_hospital_finder.svg" alt="Hospital Finder project" class="w-full h-36 object-cover rounded-xl mb-4 border border-accent/10 bg-white" loading="lazy">
                     <div class="flex items-center mb-4">
                         <div class="bg-accent text-white p-3 rounded-lg mr-4 shadow-lg">
                             <i class="fas fa-hospital text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900">Hospital Finder (MVP)</h3>
-                            <p class="text-sm text-gray-600"><i class="fas fa-calendar mr-1"></i>2026</p>
+                            <h3 class="fs-lg font-bold text-gray-900">Hospital Finder (MVP)</h3>
+                            <p class="fs-sm text-gray-600"><i class="fas fa-calendar mr-1"></i>2026</p>
                         </div>
                     </div>
                     <p class="text-gray-700 mb-4 leading-relaxed">
@@ -582,16 +562,16 @@
                     <a href="https://hospital-finder-1.onrender.com/" target="_blank" class="inline-flex items-center text-accent hover:text-primary transition font-semibold mb-4 group">
                         <i class="fas fa-globe mr-2"></i>
                         Visit Live App
-                        <i class="fas fa-arrow-up-right-from-square ml-2 text-xs opacity-80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                        <i class="fas fa-arrow-up-right-from-square ml-2 fs-sm opacity-80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
                     </a>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">AI</span>
-                        <span class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">RAG</span>
-                        <span class="bg-dark/10 text-dark text-xs font-semibold px-3 py-1 rounded-full">Healthcare</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">Healthcare</span>
                     </div>
                     <div class="border-t border-gray-200 pt-4">
-                        <div class="text-sm font-semibold text-gray-700 mb-2">Key Features:</div>
-                        <ul class="text-sm text-gray-600 space-y-1">
+                        <div class="fs-sm font-bold text-primary mb-2">Key Features:</div>
+                        <ul class="fs-sm text-gray-600 space-y-1">
                             <li><i class="fas fa-check text-accent mr-2"></i>Location-aware hospital recommendations</li>
                             <li><i class="fas fa-check text-accent mr-2"></i>First-aid guidance and emergency assistance</li>
                             <li><i class="fas fa-check text-accent mr-2"></i>Personalized health data storage</li>
@@ -602,289 +582,326 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50">
+
+    <!-- Laboratory & Technical Skills -->
+    <section id="skills" class="py-20 bg-lightgreen" aria-labelledby="skills-title">
+        <style>
+            #skills .sk-card{background:#fff;border:1px solid rgba(8,131,149,.18);border-radius:1rem;box-shadow:0 1px 3px rgba(10,77,104,.08);transition:border-color .25s,box-shadow .25s}
+            #skills .sk-card:hover{border-color:rgba(8,131,149,.55);box-shadow:0 8px 24px rgba(10,77,104,.10)}
+            #skills button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+            #skills .sk-wf{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;list-style:none;padding:0;margin:0}
+            #skills .sk-wf>li{position:relative}
+            #skills .sk-wf>li:not(:last-child)::after{content:"";position:absolute;top:2.2rem;left:100%;width:1rem;border-top:2px dashed rgba(8,131,149,.45)}
+            #skills .sk-wfb{display:block;width:100%;height:100%;padding:1rem .5rem;text-align:center;background:#fff}
+            #skills .sk-wfb svg{margin:0 auto}
+            #skills .sk-wt{display:block;font-size:var(--fs-sm);font-weight:600;color:#0A4D68;margin-top:.5rem;line-height:1.3}
+            #skills .sk-wfb[aria-expanded=true]{border-color:#088395;background:#F4FAFC;box-shadow:0 0 0 2px rgba(8,131,149,.25)}
+            #skills .sk-wfp{margin-top:1.25rem;background:#fff;border:1px solid rgba(8,131,149,.4);border-top:4px solid #088395;border-radius:1rem;padding:1.75rem;font-size:var(--fs-sm);line-height:var(--lh-body);color:#374151;box-shadow:0 8px 24px rgba(10,77,104,.08)}
+            #skills .sk-ph{display:flex;gap:.75rem;align-items:center;margin-bottom:1rem}
+            #skills .sk-ico{width:2.5rem;height:2.5rem;flex:none;display:flex;align-items:center;justify-content:center;border-radius:.6rem;background:#088395;color:#fff}
+            #skills .sk-ph h3{font-size:var(--fs-xl);font-weight:700;color:#111827;line-height:1.2}
+            #skills .sk-tag{font-size:var(--fs-xs);color:#4b5563;margin-top:.15rem}
+            #skills .sk-pg{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+            #skills .sk-pg p+p{margin-top:.6rem}
+            #skills .sk-art{display:block;width:100%;height:auto;max-height:9.5rem;background:#F4FAFC;border:1px solid rgba(8,131,149,.12);border-radius:.75rem;margin-top:1rem}
+            #skills .sk-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+            #skills .sk-chip{font-size:var(--fs-xs);line-height:1.1rem;padding:.2rem .6rem;border-radius:9999px;background:rgba(8,131,149,.08);color:#0A4D68;border:1px solid rgba(8,131,149,.18)}
+            #skills .sk-flow{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;font-size:var(--fs-xs);color:#0A4D68;margin-top:1rem}
+            #skills .sk-flow .s{display:inline-flex;gap:.3rem;align-items:center;padding:.25rem .5rem;border-radius:.5rem;background:#F4FAFC;border:1px solid rgba(8,131,149,.2)}
+            #skills .sk-flow .sep{color:#088395;font-size:.625rem}
+            #skills h4{font-weight:700;color:#0A4D68;font-size:var(--fs-base);margin:1.1rem 0 .3rem}#skills .sk-pg>div>h4:first-child{margin-top:0}
+            #skills dt{font-weight:600;color:#111827;margin-top:.5rem}#skills dd{margin:0}
+            #skills .sk-wfp li{display:flex;gap:.5rem;margin-top:.25rem}#skills .sk-wfp li i{color:#088395;margin-top:.35rem;font-size:.7rem}
+            #skills .sk-links{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:.5rem}
+            #skills .sk-link{color:#088395;font-size:var(--fs-sm);font-weight:600;text-decoration:underline;text-underline-offset:2px}#skills .sk-link:hover{color:#0A4D68}
+            #skills .sk-note{margin-top:1rem;font-size:var(--fs-xs);color:#4b5563;border-left:3px solid rgba(8,131,149,.4);padding-left:.6rem}
+            #skills :focus-visible{outline:2px solid #088395;outline-offset:2px}
+            @media (max-width:1023px){#skills .sk-wf{grid-template-columns:repeat(3,1fr)}#skills .sk-wf>li::after{display:none}}
+            @media (max-width:767px){#skills .sk-pg{grid-template-columns:1fr}#skills .sk-wf{grid-template-columns:1fr 1fr}#skills .sk-wfp{padding:1.25rem}}
+            @media (prefers-reduced-motion:reduce){#skills *{transition:none!important}}
+        </style>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 text-primary">
-                Technical Skills
-            </h2>
+            <h2 id="skills-title" class="section-title font-bold text-center mb-4 text-primary">Laboratory &amp; Technical Skills</h2>
             <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Biosensor Development -->
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover border-t-4 border-accent hover:shadow-2xl transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-accent/10 p-3 rounded-lg mr-3">
-                            <i class="fas fa-microscope text-2xl text-accent"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">Biosensing & Electrochemistry</h3>
-                    </div>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Electrode modifications</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Data collection</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Real sample analysis</li>
-                    </ul>
-                </div>
-
-                <!-- Machine Learning -->
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover border-t-4 border-accent hover:shadow-2xl transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-gradient-to-br from-accent/10 to-accent/20 p-3 rounded-lg mr-3">
-                            <i class="fas fa-brain text-2xl text-accent"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">Machine Learning</h3>
-                    </div>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Model Development</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Data Analysis</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Feature Extraction</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Python (ML prototyping)</li>
-                    </ul>
-                </div>
-
-                <!-- Data Analysis -->
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover border-t-4 border-dark hover:shadow-2xl transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-dark/10 p-3 rounded-lg mr-3">
-                            <i class="fas fa-chart-line text-2xl text-dark"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">Data Analysis</h3>
-                    </div>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-dark mr-2"></i>Biosignal Analysis</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-dark mr-2"></i>ECG Interpretation</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-dark mr-2"></i>Data Visualization</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-dark mr-2"></i>C programming</li>
-                    </ul>
-                </div>
-
-                <!-- Lab Techniques -->
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover border-t-4 border-accent hover:shadow-2xl transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-accent/10 p-3 rounded-lg mr-3">
-                            <i class="fas fa-flask text-2xl text-accent"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">Spectroscopy</h3>
-                    </div>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>FTIR Spectroscopy</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>ATR Analysis</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Material characterization</li>
-                    </ul>
-                </div>
-                                <!-- Biomedical Instrumentation -->
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover border-t-4 border-accent hover:shadow-2xl transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-gradient-to-br from-accent/10 to-accent/20 p-3 rounded-lg mr-3">
-                            <i class="fas fa-stethoscope text-2xl text-accent"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">Molecular Biology</h3>
-                    </div>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>PCR and RT-PCR</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Agarose gel electrophoresis</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i>Basic wet lab workflows</li>
-                    </ul>
-                </div>
-
-                <!-- Professional Development -->
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover border-t-4 border-dark hover:shadow-2xl transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-dark/10 p-3 rounded-lg mr-3">
-                            <i class="fas fa-certificate text-2xl text-dark"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">Scientific Communication</h3>
-                    </div>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-dark mr-2"></i>Academic Writing</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-dark mr-2"></i>Paper Publication</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-coral mr-2"></i>Research Methods</li>
-                    </ul>
-                </div>
-            </div>
+            <p class="text-center text-gray-700 max-w-2xl mx-auto mb-8 leading-relaxed">From nanomaterial engineering and electrochemical biosensing to computational biomarker analysis and digital-health prototyping.</p>
+            <ol class="sk-wf" aria-label="Related capabilities, shown as a conceptual overview">
+                    <li><button type="button" class="sk-card sk-wfb" aria-expanded="false" aria-controls="wf0"><svg viewBox="0 0 40 40" width="44" height="44" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6"><circle cx="20" cy="20" r="19" fill="#fff"/><circle cx="14" cy="16" r="3"/><circle cx="25" cy="14" r="2"/><circle cx="21" cy="24" r="4"/><circle cx="12" cy="27" r="1.8"/></svg><span class="sk-wt">Material Engineering</span></button></li>
+                    <li><button type="button" class="sk-card sk-wfb" aria-expanded="false" aria-controls="wf1"><svg viewBox="0 0 40 40" width="44" height="44" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6"><circle cx="20" cy="20" r="19" fill="#fff"/><path d="M17 8h6v15l-3 4-3-4z"/><path d="M17 31h6"/></svg><span class="sk-wt">Sensor Development</span></button></li>
+                    <li><button type="button" class="sk-card sk-wfb" aria-expanded="false" aria-controls="wf2"><svg viewBox="0 0 40 40" width="44" height="44" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6"><circle cx="20" cy="20" r="19" fill="#fff"/><path d="M20 8c5 7 8 11 8 15a8 8 0 0 1-16 0c0-4 3-8 8-15z"/></svg><span class="sk-wt">Sample Analysis</span></button></li>
+                    <li><button type="button" class="sk-card sk-wfb" aria-expanded="false" aria-controls="wf3"><svg viewBox="0 0 40 40" width="44" height="44" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6"><circle cx="20" cy="20" r="19" fill="#fff"/><path d="M7 27h6l3-10 4 14 4-18 3 14h6"/></svg><span class="sk-wt">Data Interpretation</span></button></li>
+                    <li><button type="button" class="sk-card sk-wfb" aria-expanded="false" aria-controls="wf4"><svg viewBox="0 0 40 40" width="44" height="44" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6"><circle cx="20" cy="20" r="19" fill="#fff"/><rect x="12" y="9" width="16" height="22" rx="3"/><path d="M18 27h4"/></svg><span class="sk-wt">Digital Health</span></button></li>
+                    <li><button type="button" class="sk-card sk-wfb" aria-expanded="false" aria-controls="wf5"><svg viewBox="0 0 40 40" width="44" height="44" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6"><circle cx="20" cy="20" r="19" fill="#fff"/><path d="M12 8h12l5 5v19H12z"/><path d="M16 20h9M16 25h9"/></svg><span class="sk-wt">Research &amp; Communication</span></button></li>
+            </ol>
+                <div id="wf0" class="sk-wfp" role="region" aria-labelledby="wft0" hidden><div class="sk-ph"><span class="sk-ico"><i class="fas fa-atom"></i></span><div><h3 id="wft0">Material Engineering</h3><p class="sk-tag">Nanomaterials &amp; Characterization · Synthesis · Surface modification · Spectroscopy</p></div></div><div class="sk-pg"><div><p>Materials preparation and characterization supporting the development of electrochemical sensing interfaces.</p><p>In electrochemical sensing, the composition of the nanomaterial layer and its contact with the electrode influence the analytical response, so preparing and characterizing the material is part of sensor development.</p><svg class="sk-art" viewBox="0 0 320 100" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6">
+                        <rect x="16" y="64" width="110" height="14" fill="#0A4D68" stroke="none"/><rect x="16" y="52" width="110" height="12" fill="#05BFDB" stroke="none" opacity=".5"/>
+                        <g fill="#fff"><circle cx="34" cy="44" r="6"/><circle cx="58" cy="46" r="5"/><circle cx="82" cy="43" r="6"/><circle cx="106" cy="46" r="5"/></g>
+                        <path d="M160 84h144M160 84V14" stroke="#6b7280"/><path d="M164 30c20 0 20 6 36 6s14 30 24 30 10-20 20-20 12 34 22 34 8-6 30-6" stroke="#0A4D68" stroke-width="2"/>
+                        <text x="232" y="97" font-size="10" fill="#4b5563" stroke="none" text-anchor="middle">Schematic IR spectrum</text>
+                    </svg><span class="sk-chips"><span class="sk-chip">Nanomaterial synthesis</span><span class="sk-chip">Nanocomposite synthesis</span><span class="sk-chip">Electrode surface engineering</span><span class="sk-chip">FTIR</span><span class="sk-chip">ATR</span></span></div><div><h4>Methods</h4><dl><dt>Nanomaterial and nanocomposite synthesis</dt><dd>Preparing materials for use in sensing interfaces.</dd><dt>Electrode surface engineering</dt><dd>Integrating the material onto the electrode.</dd><dt>FTIR spectroscopy</dt><dd>Measures vibrational absorption that helps identify chemical bonds and functional groups.</dd><dt>ATR</dt><dd>An FTIR sampling mode that needs little sample preparation.</dd></dl><h4>Applied research</h4><p>Ti<sub>3</sub>C<sub>2</sub>T<sub>x</sub>/carbon black nanocomposite hybrid for L-cysteine sensing.</p><p class="sk-links"><a class="sk-link" href="https://doi.org/10.1016/j.microc.2026.116817" target="_blank" rel="noopener">L-cysteine paper, Microchemical Journal 2026</a></p></div></div></div>
+                <div id="wf1" class="sk-wfp" role="region" aria-labelledby="wft1" hidden><div class="sk-ph"><span class="sk-ico"><i class="fas fa-bolt"></i></span><div><h3 id="wft1">Sensor Development</h3><p class="sk-tag">Electrochemical Biosensing · Electrode engineering · Electrochemical measurement</p></div></div><div class="sk-pg"><div><p>My core laboratory research experience centers on electrochemical sensing, electrode engineering, and analytical testing using real biological samples.</p><p>Electrochemical biosensing measures electrical responses at an electrode interface to investigate an analyte. Performance depends on the electrode surface, measurement conditions, target-analyte response, and sample matrix.</p><svg class="sk-art" viewBox="0 0 320 130" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6">
+                        <rect x="20" y="86" width="90" height="12" fill="#0A4D68" stroke="none"/><rect x="20" y="78" width="90" height="8" fill="#05BFDB" stroke="none" opacity=".5"/>
+                        <g fill="#088395" stroke="none"><circle cx="34" cy="73" r="4"/><circle cx="52" cy="71" r="5"/><circle cx="72" cy="73" r="4"/><circle cx="92" cy="72" r="4.5"/></g>
+                        <path d="M60 14c8 12 13 18 13 26a13 13 0 0 1-26 0c0-8 5-14 13-26z" fill="#fff"/><path d="M60 52v14" stroke-dasharray="3 3"/>
+                        <path d="M118 92h28" /><path d="M140 86l8 6-8 6"/>
+                        <path d="M170 106h130M170 106V20" stroke="#6b7280"/><path d="M174 98h30c8 0 10-6 16-6s8 4 12-48c4 52 8 48 14 48h50" stroke="#0A4D68" stroke-width="2"/>
+                        <text x="236" y="122" font-size="10" fill="#4b5563" stroke="none" text-anchor="middle">Illustrative signal, not data</text>
+                    </svg><span class="sk-chips"><span class="sk-chip">Biosensor fabrication</span><span class="sk-chip">Electrode surface modification</span><span class="sk-chip">Electrochemical characterization</span><span class="sk-chip">Experimental design &amp; optimization</span></span></div><div><h4>Fabrication</h4><dl><dt>Biosensor fabrication</dt><dd>Constructing the sensing electrode and interface.</dd><dt>Electrode surface modification</dt><dd>Applying functional nanomaterials to change the sensing interface.</dd></dl><h4>Electrochemical techniques</h4><dl><dt>Cyclic voltammetry (CV)</dt><dd>Investigates redox behavior across a potential range.</dd><dt>Differential pulse and square-wave voltammetry (DPV, SWV)</dt><dd>Pulse-based current measurements, often used for sensitive analytical detection.</dd><dt>Electrochemical impedance spectroscopy (EIS)</dt><dd>Frequency-dependent impedance that characterizes the electrode-electrolyte interface.</dd><dt>Linear sweep voltammetry (LSV)</dt><dd>Records current while potential is swept in one direction.</dd></dl><h4>Applied research</h4><p>Smartphone-based creatinine sensing and Ti<sub>3</sub>C<sub>2</sub>T<sub>x</sub>/carbon black L-cysteine sensing in blood serum.</p><p class="sk-links"><a class="sk-link" href="https://doi.org/10.1039/D5RA03128A" target="_blank" rel="noopener">Creatinine paper, RSC Advances 2025</a><a class="sk-link" href="https://doi.org/10.1016/j.microc.2026.116817" target="_blank" rel="noopener">L-cysteine paper, Microchemical Journal 2026</a></p><p class="sk-note">Techniques are ones I have used; not every technique was used in every study.</p></div></div></div>
+                <div id="wf2" class="sk-wfp" role="region" aria-labelledby="wft2" hidden><div class="sk-ph"><span class="sk-ico"><i class="fas fa-vial"></i></span><div><h3 id="wft2">Sample Analysis</h3><p class="sk-tag">Real-sample analysis · Human blood serum</p></div></div><div class="sk-pg"><div><p>A sensor must be judged in the sample it measures. Human blood serum is a complex biological matrix, so serum testing raises considerations that a simple buffer does not.</p><span class="sk-chips"><span class="sk-chip">Human blood serum</span><span class="sk-chip">Real-sample analysis</span><span class="sk-chip">Electrochemical characterization</span></span></div><div><h4>Related work</h4><ul><li><i class="fas fa-check"></i><span>Creatinine sensing in human blood serum</span></li><li><i class="fas fa-check"></i><span>L-cysteine sensing in human blood serum</span></li><li><i class="fas fa-check"></i><span>Experimental design and optimization, assisted</span></li></ul><p class="sk-links"><a class="sk-link" href="https://doi.org/10.1039/D5RA03128A" target="_blank" rel="noopener">Creatinine paper, RSC Advances 2025</a><a class="sk-link" href="https://doi.org/10.1016/j.microc.2026.116817" target="_blank" rel="noopener">L-cysteine paper, Microchemical Journal 2026</a></p><p class="sk-note">No recovery, interference, or clinical-validation results are claimed here; see the papers.</p></div></div></div>
+                <div id="wf3" class="sk-wfp" role="region" aria-labelledby="wft3" hidden><div class="sk-ph"><span class="sk-ico"><i class="fas fa-chart-bar"></i></span><div><h3 id="wft3">Data Interpretation</h3><p class="sk-tag">Computational Research &amp; Data Analysis · LC-MS metabolomics · Statistics · Machine learning</p></div></div><div class="sk-pg"><div><p>Computational and statistical workflows for integrating biomedical datasets, identifying candidate biomarkers, and evaluating analytical patterns. In electrochemical work, interpretation means reading signal behavior against measurement conditions.</p><span class="sk-flow" aria-hidden="true"><span class="s"><i class="fas fa-database"></i>Public LC-MS datasets</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-layer-group"></i>Harmonization</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-filter"></i>Statistical filtering</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-sitemap"></i>Pathway analysis</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-chart-line"></i>ML evaluation</span></span><span class="sk-chips"><span class="sk-chip">Python</span><span class="sk-chip">C</span><span class="sk-chip">Metabolomics Workbench</span><span class="sk-chip">HMDB</span><span class="sk-chip">KEGG</span></span></div><div><h4>Thesis evidence</h4><p>Bachelor&rsquo;s thesis &middot; 3 public datasets &middot; n = 337<br><em>Reproducible Metabolite Biomarkers in Breast Cancer: A Cross-Study Harmonization and Meta-Analysis</em></p><h4>Workflow</h4><dl><dt>Cross-study harmonization</dt><dd>Combining datasets from different studies.</dd><dt>Statistical filtering</dt><dd>FDR correction, effect-size filtering, heterogeneity analysis.</dd><dt>Biological interpretation</dt><dd>Pathway enrichment using HMDB and KEGG.</dd><dt>Machine-learning evaluation</dt><dd>Random Forest and Gradient Boosting to assess diagnostic performance.</dd></dl><h4>Outcome</h4><p>Five consistently depleted amino-acid candidates.</p><p class="sk-note">Research candidates only: not published and not clinically validated.</p></div></div></div>
+                <div id="wf4" class="sk-wfp" role="region" aria-labelledby="wft4" hidden><div class="sk-ph"><span class="sk-ico"><i class="fas fa-heartbeat"></i></span><div><h3 id="wft4">Digital Health</h3><p class="sk-tag">Biomedical Systems &amp; Digital Health · Sensor integration · Prototyping · Healthcare software</p></div></div><div class="sk-pg"><div><p>Biomedical technology prototyping combining physiological sensing, monitoring workflows, and healthcare-oriented software applications.</p><svg class="sk-art" viewBox="0 0 300 70" aria-hidden="true" fill="none" stroke="#088395" stroke-width="1.6"><rect x="8" y="8" width="90" height="22" rx="5" fill="#fff"/><rect x="8" y="40" width="90" height="22" rx="5" fill="#fff"/><text x="53" y="23" font-size="10" fill="#0A4D68" stroke="none" text-anchor="middle">Glucose sensing</text><text x="53" y="55" font-size="10" fill="#0A4D68" stroke="none" text-anchor="middle">ECG acquisition</text><path d="M98 19h40v16M98 51h40V35M138 35h30"/><path d="M162 30l6 5-6 5"/><rect x="172" y="10" width="120" height="50" rx="6" fill="#fff"/><path d="M182 38h18l5-10 7 20 6-14h14l4-6h34" stroke="#0A4D68"/></svg><span class="sk-chips"><span class="sk-chip">HealthTracker</span><span class="sk-chip">Hospital Finder</span><span class="sk-chip">RAG</span><span class="sk-chip">FastAPI</span><span class="sk-chip">PostgreSQL</span></span></div><div><h4>HealthTracker (2024)</h4><p>Prototype dual-sensor platform integrating glucose sensing and ECG monitoring in a real-time workflow for diabetes care.</p><ul><li><i class="fas fa-check"></i><span>Glucose-sensing and ECG integration</span></li><li><i class="fas fa-check"></i><span>Physiological signal acquisition</span></li><li><i class="fas fa-check"></i><span>Poster: International Biotechnology Conference 2025</span></li></ul><p class="sk-links"><a class="sk-link" href="#project-healthtracker">View project</a></p><h4>Hospital Finder (2026, MVP)</h4><p>AI-assisted emergency healthcare assistant.</p><span class="sk-flow" aria-hidden="true"><span class="s"><i class="fas fa-keyboard"></i>User input</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-book-medical"></i>Retrieval</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-location-dot"></i>Location-aware picks</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-window-maximize"></i>App interface</span></span><ul><li><i class="fas fa-check"></i><span>RAG and Groq API for retrieval-supported responses</span></li><li><i class="fas fa-check"></i><span>FastAPI backend, PostgreSQL storage</span></li><li><i class="fas fa-check"></i><span>Location-based hospital recommendations</span></li><li><i class="fas fa-check"></i><span>Personalized health data storage and first-aid guidance</span></li></ul><p class="sk-links"><a class="sk-link" href="#project-hospital-finder">View project</a><a class="sk-link" href="https://hospital-finder-1.onrender.com/" target="_blank" rel="noopener">Live app</a></p><p class="sk-note">Prototypes: not clinically certified. Hospital Finder does not replace emergency services or professional medical care.</p></div></div></div>
+                <div id="wf5" class="sk-wfp" role="region" aria-labelledby="wft5" hidden><div class="sk-ph"><span class="sk-ico"><i class="fas fa-file-lines"></i></span><div><h3 id="wft5">Research &amp; Communication</h3><p class="sk-tag">Scientific Research &amp; Communication · Experimental design · Interpretation · Manuscripts</p></div></div><div class="sk-pg"><div><p>Planning experiments, interpreting results, and translating research findings into structured scientific outputs.</p><span class="sk-flow" aria-hidden="true"><span class="s"><i class="fas fa-clipboard-list"></i>Planning</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-chart-line"></i>Analysis</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-file-lines"></i>Manuscript</span><i class="fas fa-chevron-right sep"></i><span class="s"><i class="fas fa-book-open"></i>Publication</span></span><span class="sk-chips"><span class="sk-chip">Academic writing</span><span class="sk-chip">Manuscript preparation</span><span class="sk-chip">Multidisciplinary collaboration</span></span></div><div><h4>Capabilities</h4><dl><dt>Experimental design and optimization</dt><dd>Assisted in turning research objectives into experiments and refining conditions.</dd><dt>Data interpretation</dt><dd>Assisted in evaluating results against the research question.</dd><dt>Manuscript preparation</dt><dd>Assisted in organizing methods, results and interpretation.</dd><dt>Collaboration</dt><dd>Worked with multidisciplinary researchers on biosensor development.</dd></dl><h4>Outputs</h4><p>Co-author of two peer-reviewed papers. Posters: 23rd Science Council of Asia Conference (30 Nov to 2 Dec 2024); International Biotechnology Conference 2025.</p><p class="sk-links"><a class="sk-link" href="https://doi.org/10.1039/D5RA03128A" target="_blank" rel="noopener">Creatinine paper, RSC Advances 2025</a><a class="sk-link" href="https://doi.org/10.1016/j.microc.2026.116817" target="_blank" rel="noopener">L-cysteine paper, Microchemical Journal 2026</a></p></div></div></div>
+            <p class="text-center fs-sm text-gray-600 mt-4">Conceptual overview of related capabilities. Individual projects do not all follow this sequence.<br><span class="font-semibold text-primary">Click to view in details.</span></p>
         </div>
+        <script>
+            (function(){var r=document.getElementById('skills'),wb=r.querySelectorAll('.sk-wfb');
+            wb.forEach(function(b){b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';wb.forEach(function(x){x.setAttribute('aria-expanded',false);document.getElementById(x.getAttribute('aria-controls')).hidden=true});if(o){b.setAttribute('aria-expanded',true);document.getElementById(b.getAttribute('aria-controls')).hidden=false}})})})();
+        </script>
     </section>
 
     <!-- Leadership & Activities -->
-    <section class="py-20 bg-white">
+    <style>
+        .ld-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:1px solid rgba(8,131,149,.18);border-radius:1rem;padding:1rem .75rem;box-shadow:0 1px 3px rgba(10,77,104,.08);transition:border-color .25s,box-shadow .25s}
+        .ld-card:hover{border-color:rgba(8,131,149,.55);border-top-color:#088395;box-shadow:0 8px 24px rgba(10,77,104,.12)}.ld-card:focus-within{box-shadow:0 0 0 3px rgba(8,131,149,.35)}
+        .ld-logo{display:flex;flex:none;align-items:center;justify-content:center;width:3.5rem;height:3.5rem;border-radius:9999px;background:#fff;border:1px solid rgba(8,131,149,.25);overflow:hidden;padding:.25rem}
+        .ld-logo img{width:100%;height:100%;object-fit:contain}
+        .ld-logo-lg{width:3.5rem;height:3.5rem;padding:.25rem}
+        .ld-card h3{font-size:var(--fs-base);font-weight:600;color:#0A4D68;line-height:1.3;margin-top:.5rem}
+        .ld-org{font-size:var(--fs-sm);color:#4b5563;margin-top:.2rem;line-height:1.4}
+        .ld-pill{display:inline-flex;gap:.4rem;align-items:center;margin-top:.5rem;font-size:var(--fs-xs);padding:.15rem .55rem;border-radius:9999px;background:rgba(8,131,149,.08);color:#0A4D68;border:1px solid rgba(8,131,149,.18)}
+        .ld-open{margin-top:auto;padding-top:.75rem;display:inline-flex;align-items:center;gap:.4rem;font-size:var(--fs-sm);font-weight:600;color:#088395;background:none;border:0;cursor:pointer}
+        .ld-open::after{content:"";position:absolute;inset:0;border-radius:1rem;cursor:pointer}
+        .ld-open i{font-size:.7rem;transition:transform .25s}.ld-card:hover .ld-open i{transform:translateX(3px)}@media (prefers-reduced-motion:reduce){.ld-card,.ld-open i{transition:none}}.ld-open:hover{color:#0A4D68}
+        .ld-open:focus-visible{outline:2px solid #088395;outline-offset:3px;border-radius:.25rem}
+        .ld-dialog{border:0;padding:0;border-radius:1rem;width:min(42rem,calc(100% - 2rem));max-height:calc(100dvh - 2rem);overflow:auto;color:#374151;box-shadow:0 25px 60px rgba(4,28,50,.35);opacity:0;transform:translateY(12px) scale(.98);transition:opacity .22s ease,transform .22s ease;overscroll-behavior:contain}
+        .ld-dialog.ld-show{opacity:1;transform:none}
+        .ld-dialog::backdrop{background:rgba(4,28,50,.55);opacity:0;transition:opacity .22s ease}.ld-dialog.ld-show::backdrop{opacity:1}
+        .ld-close{position:sticky;top:.75rem;float:right;margin:.75rem .75rem 0 0;width:2.5rem;height:2.5rem;border-radius:9999px;background:#E8F4F8;color:#0A4D68;z-index:2;cursor:pointer;border:0}
+        .ld-close:hover{background:#088395;color:#fff}.ld-close:focus-visible{outline:2px solid #088395;outline-offset:2px}
+        .ld-head{display:flex;gap:1rem;align-items:center;padding:1.75rem 1.75rem 1rem;}
+                .ld-head h3{font-size:var(--fs-xl);font-weight:700;color:#111827;line-height:1.25;padding-right:2.5rem}.ld-head p{color:#4b5563;font-weight:500}.ld-head .ld-when{font-size:var(--fs-sm);color:#088395;font-weight:600;margin-top:.15rem}
+        .ld-body{padding:0 1.75rem 1.75rem;font-size:var(--fs-base);line-height:1.7}.ld-body h4{font-weight:700;color:#0A4D68;margin:1.25rem 0 .4rem}
+        .ld-ul li,.ld-ev li{display:flex;gap:.6rem;margin-top:.35rem}.ld-ul i{color:#088395;margin-top:.4rem;font-size:.75rem}
+        .ld-ev li{display:block;border-left:3px solid rgba(8,131,149,.35);padding-left:.8rem;margin-top:.8rem}.ld-ev strong{color:#111827;display:block}.ld-date{display:block;font-size:var(--fs-sm);color:#088395;font-weight:600}
+        .ld-quote{margin:1.25rem 0;padding:.9rem 1.1rem;background:#F4FAFC;border-left:4px solid #088395;border-radius:.5rem;font-style:italic;color:#0A4D68}
+        .ld-link{display:inline-flex;align-items:center;margin-top:1.25rem;padding:.55rem 1rem;border-radius:.5rem;background:#088395;color:#fff;font-weight:600;font-size:var(--fs-sm)}.ld-link:hover{background:#0A4D68}.ld-link:focus-visible{outline:2px solid #0A4D68;outline-offset:2px}
+        body.ld-lock{overflow:hidden}
+        @media (prefers-reduced-motion:reduce){.ld-dialog,.ld-dialog::backdrop{transition:none}}
+    </style>
+    <section id="leadership" class="py-20 bg-white" aria-labelledby="leadership-title">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 text-primary">
-                Leadership & Activities
+            <h2 id="leadership-title" class="section-title font-bold text-center mb-4 text-primary">
+                Leadership &amp; Activities
             </h2>
             <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl p-8 border-l-4 border-accent shadow-lg hover:shadow-2xl transition-all duration-300 group">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-accent p-4 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                            <i class="fas fa-robot text-3xl text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900">General Secretary</h3>
-                            <p class="text-gray-600 font-medium">JUST Robo Society</p>
-                            <p class="text-sm text-accent font-semibold mt-1"><i class="fas fa-calendar-alt mr-1"></i>2024 - 2025</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed">
-                        Leading robotics initiatives and organizing technical workshops for students passionate about automation and robotics technology.
-                    </p>
-                </div>
-                 <div class="bg-gradient-to-br from-accent/5 to-accent/10 rounded-2xl p-8 border-l-4 border-accent shadow-lg hover:shadow-2xl transition-all duration-300 group">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-gradient-to-br from-accent to-accent/80 p-4 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                            <i class="fas fa-users text-3xl text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900">Secretary</h3>
-                            <p class="text-gray-600 font-medium">Corporate & Public Relations, JUST Research Society</p>
-                            <p class="text-sm text-accent font-semibold mt-1"><i class="fas fa-calendar-alt mr-1"></i>2024 - Present</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed">
-                        Managing external partnerships and communications, fostering research collaborations and promoting academic excellence.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-2xl p-8 border-l-4 border-dark md:col-span-2 shadow-lg hover:shadow-2xl transition-all duration-300 group">
-                    <div class="flex items-center">
-                        <div class="bg-dark p-4 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                            <i class="fas fa-hand-holding-heart text-3xl text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900">Community Service</h3>
-                            <p class="text-gray-700 mt-2 leading-relaxed">Regular Blood Donor - Contributing to saving lives through voluntary blood donation</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="grid sm:grid-cols-3 gap-4 items-stretch max-w-4xl mx-auto">
+                <article class="ld-card">
+                    <span class="ld-logo ld-logo-lg"><img src="assets/logo_just_robo_society.png" alt="" loading="lazy" width="112" height="112"></span>
+                    <h3>General Secretary</h3><p class="ld-org">JUST Robo Society</p><span class="ld-pill"><i class="fas fa-calendar-alt" aria-hidden="true"></i>2024–25</span>
+                    <button type="button" class="ld-open" data-target="ld-robo" aria-haspopup="dialog">View Details<span class="sr-only">: General Secretary, JUST Robo Society</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                </article>
+                <article class="ld-card">
+                    <span class="ld-logo ld-logo-lg"><img src="assets/logo_just_research_society.png" alt="" loading="lazy" width="112" height="112"></span>
+                    <h3>Secretary, Corporate &amp; Public Relations</h3><p class="ld-org">JUST Research Society</p><span class="ld-pill"><i class="fas fa-calendar-alt" aria-hidden="true"></i>2024–2026</span>
+                    <button type="button" class="ld-open" data-target="ld-research" aria-haspopup="dialog">View Details<span class="sr-only">: Secretary, Corporate &amp; Public Relations, JUST Research Society</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                </article>
+                <article class="ld-card">
+                    <span class="ld-logo ld-logo-lg"><img src="assets/logo_just_blood_bank.png" alt="" loading="lazy" width="112" height="112"></span>
+                    <h3>Community Service</h3><p class="ld-org">Regular Blood Donor</p><span class="ld-pill"><i class="fas fa-calendar-alt" aria-hidden="true"></i>Ongoing</span>
+                    <button type="button" class="ld-open" data-target="ld-blood" aria-haspopup="dialog">View Details<span class="sr-only">: Community Service, Regular Blood Donor</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                </article>
             </div>
+            <dialog id="ld-robo" class="ld-dialog" aria-labelledby="ld-robo-t">
+                <button type="button" class="ld-close" aria-label="Close dialog"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+                <div class="ld-head"><span class="ld-logo"><img src="assets/logo_just_robo_society.png" alt="" width="56" height="56"></span><div><h3 id="ld-robo-t">General Secretary</h3><p>JUST Robo Society</p><p class="ld-when"><i class="fas fa-calendar-alt mr-1" aria-hidden="true"></i>2024 - 2025</p></div></div>
+                <div class="ld-body"><p>As General Secretary of JUST Robo Society, I contributed to organizing robotics initiatives and technical activities that encouraged students to explore robotics, automation, and engineering innovation. My responsibilities involved supporting event coordination, student engagement, and the execution of technical competitions and collaborative science activities.</p><h4>Key Responsibilities</h4><ul class="ld-ul"><li><i class="fas fa-check" aria-hidden="true"></i><span>Coordinating robotics-related events and technical competitions.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Supporting event planning, logistics, and execution.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Encouraging student participation in robotics and engineering activities.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Contributing to initiatives that promote hands-on learning and technical creativity.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Supporting collaboration among students, organizers, and participating teams.</span></li></ul><h4>Events &amp; Activities</h4><ul class="ld-ev"><li><strong>Cubical</strong><span class="ld-date">9 December 2024</span><p>Contributed to the society's event activities, including event organization, participant engagement, and promotional coordination.</p></li><li><strong>University Day: Line Following Robot (LFR) Competition</strong><span class="ld-date">25 January 2025</span><p>Supported a robotics competition showcasing student engagement with autonomous robot navigation and practical engineering challenges.</p></li><li><strong>International Robo Olympiad</strong><span class="ld-date">23 May 2025</span><p>Contributed to robotics competition activities that encouraged technical participation and interest in robotics and automation.</p></li><li><strong>Science Fair 2025</strong><span class="ld-date">2 March 2025 &middot; In collaboration with Unnoto Momoshir</span><p>Participated in a collaborative science outreach initiative intended to encourage scientific curiosity, knowledge sharing, and student engagement.</p></li></ul><a class="ld-link" href="https://www.facebook.com/justrobosociety" target="_blank" rel="noopener"><i class="fab fa-facebook mr-2" aria-hidden="true"></i>Visit JUST Robo Society on Facebook<span class="sr-only"> (opens in a new tab)</span></a></div>
+            </dialog>
+            <dialog id="ld-research" class="ld-dialog" aria-labelledby="ld-research-t">
+                <button type="button" class="ld-close" aria-label="Close dialog"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+                <div class="ld-head"><span class="ld-logo"><img src="assets/logo_just_research_society.png" alt="" width="56" height="56"></span><div><h3 id="ld-research-t">Secretary, Corporate &amp; Public Relations</h3><p>JUST Research Society</p><p class="ld-when"><i class="fas fa-calendar-alt mr-1" aria-hidden="true"></i>2024 - 2026</p></div></div>
+                <div class="ld-body"><p>As Secretary of Corporate and Public Relations, I contribute to external communication, institutional outreach, and relationship-building initiatives. This role focuses on connecting the research society with the broader academic and professional community and supporting opportunities for research engagement and collaboration.</p><h4>Key Responsibilities</h4><ul class="ld-ul"><li><i class="fas fa-check" aria-hidden="true"></i><span>Supporting communication with external organizations and professionals.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Facilitating institutional outreach and partnership development.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Promoting research society initiatives to relevant audiences.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Assisting with professional correspondence and collaboration activities.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Supporting the society's visibility and engagement within the research community.</span></li></ul><h4>Contribution</h4><p>This role has strengthened my understanding of professional communication, organizational representation, and the importance of building connections between student-led research initiatives and the wider research ecosystem.</p><a class="ld-link" href="https://www.facebook.com/profile.php?id=61552284853330" target="_blank" rel="noopener"><i class="fab fa-facebook mr-2" aria-hidden="true"></i>Visit JUST Research Society on Facebook<span class="sr-only"> (opens in a new tab)</span></a></div>
+            </dialog>
+            <dialog id="ld-blood" class="ld-dialog" aria-labelledby="ld-blood-t">
+                <button type="button" class="ld-close" aria-label="Close dialog"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+                <div class="ld-head"><span class="ld-logo"><img src="assets/logo_just_blood_bank.png" alt="" width="56" height="56"></span><div><h3 id="ld-blood-t">Community Service</h3><p>Regular Blood Donor</p><p class="ld-when"><i class="fas fa-calendar-alt mr-1" aria-hidden="true"></i>Ongoing voluntary commitment</p></div></div>
+                <div class="ld-body"><p>I consider voluntary blood donation a meaningful way to contribute to society. It represents a commitment to helping people during medical emergencies and supporting a culture of compassion, solidarity, and shared responsibility.</p><h4>Core Values</h4><ul class="ld-ul"><li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Humanity:</strong> Offering support to people in need without expecting personal reward.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Healthcare accessibility:</strong> Recognizing the importance of access to essential healthcare during medical emergencies.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Dignity and inclusion:</strong> Supporting a society that respects people regardless of their health conditions, disabilities, or socioeconomic circumstances.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Community responsibility:</strong> Encouraging people to contribute to the well-being of others through practical acts of service.</span></li></ul><blockquote class="ld-quote">&ldquo;Humanity is not measured by what we achieve for ourselves, but by what we do to ease another person&rsquo;s suffering.&rdquo;</blockquote><p>For me, voluntary service is a reminder that even a simple contribution can matter to someone facing a difficult time. I believe a compassionate society is built when people recognize one another&rsquo;s needs and take responsibility for helping where they can.</p><a class="ld-link" href="https://www.facebook.com/100067531001403/posts/1121223470138676/?app=fbl" target="_blank" rel="noopener"><i class="fab fa-facebook mr-2" aria-hidden="true"></i>View Community Service Record on Facebook<span class="sr-only"> (opens in a new tab)</span></a></div>
+            </dialog>
         </div>
+    <script>
+    (function(){
+        var sec=document.getElementById('leadership'),last=null;
+        function openD(d,t){last=t;d.showModal();document.body.classList.add('ld-lock');d.scrollTop=0;requestAnimationFrame(function(){d.classList.add('ld-show')})}
+        function closeD(d){if(!d.open)return;d.classList.remove('ld-show');var done=false,f=function(){if(done)return;done=true;d.close();document.body.classList.remove('ld-lock');if(last)last.focus()};
+            if(matchMedia('(prefers-reduced-motion:reduce)').matches)f();else{d.addEventListener('transitionend',f,{once:true});setTimeout(f,300)}}
+        sec.querySelectorAll('.ld-open').forEach(function(b){b.addEventListener('click',function(){openD(document.getElementById(b.dataset.target),b)})});
+        sec.querySelectorAll('.ld-dialog').forEach(function(d){
+            d.querySelector('.ld-close').addEventListener('click',function(){closeD(d)});
+            d.addEventListener('click',function(e){if(e.target===d)closeD(d)});
+            d.addEventListener('cancel',function(e){e.preventDefault();closeD(d)});
+        });
+    })();
+    </script>
     </section>
 
     <!-- Education -->
-    <section class="py-20 bg-gray-50">
+    <style>
+        .ed-flow{display:grid;grid-template-columns:1fr;gap:.5rem;align-items:stretch;max-width:64rem;margin:0 auto}
+        @media (min-width:768px){.ed-flow{grid-template-columns:1fr auto 1fr auto 1fr;gap:.75rem}}
+        .ed-arrow{display:flex;align-items:center;justify-content:center;color:#088395;font-size:1.25rem;transform:rotate(90deg);padding:.25rem 0}
+        @media (min-width:768px){.ed-arrow{transform:none;padding:0 .25rem}}
+        .ed-card{padding:1.5rem 1rem}
+                .ed-icon{font-size:1.4rem;color:#088395}
+        .ed-card .ld-logo{width:4rem;height:4rem}
+        .ed-card h3{font-size:var(--fs-base)}
+        .ed-meta{font-size:var(--fs-xs);color:#4b5563;margin-top:.15rem}
+        .ed-table{width:100%;border-collapse:collapse;font-size:var(--fs-sm);margin-top:.5rem}
+        .ed-table th{background:#E8F4F8;color:#0A4D68;text-align:left;padding:.5rem .75rem;font-weight:700}
+        .ed-table td{padding:.4rem .75rem;border-bottom:1px solid rgba(8,131,149,.15)}
+        .ed-table tr:nth-child(even) td{background:#F4FAFC}
+        .ed-wrap{overflow-x:auto;border:1px solid rgba(8,131,149,.2);border-radius:.5rem}
+        .ed-cgpa{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+        .ed-cgpa div{flex:1 1 8rem;background:#F4FAFC;border:1px solid rgba(8,131,149,.2);border-radius:.75rem;padding:.75rem;text-align:center}
+        .ed-cgpa strong{display:block;font-size:var(--fs-xl);color:#0A4D68}.ed-cgpa span{font-size:var(--fs-xs);color:#4b5563}
+    </style>
+    <section id="education" class="py-20 bg-gray-50" aria-labelledby="education-title">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+            <h2 id="education-title" class="section-title font-bold text-center mb-4 text-primary">
                 Education
             </h2>
             <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
 
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-accent">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-accent/10 p-4 rounded-lg mr-6">
-                            <i class="fas fa-graduation-cap text-4xl text-accent"></i>
+            <ol class="ed-flow" role="list">
+                <li class="ld-card ed-card">
+                    <span class="ld-logo"><i class="fas fa-school ed-icon" aria-hidden="true"></i></span>
+                    <h3>Secondary School Certificate (SSC)</h3><p class="ld-org">Science<br>Rajshahi Board</p>
+                    <span class="ld-pill"><i class="fas fa-star" aria-hidden="true"></i>GPA 5.00 / 5.00</span>
+                </li>
+                <li class="ed-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></li>
+                <li class="ld-card ed-card">
+                    <span class="ld-logo"><i class="fas fa-book-open ed-icon" aria-hidden="true"></i></span>
+                    <h3>Higher Secondary Certificate (HSC)</h3><p class="ld-org">Science<br>Rajshahi Board</p>
+                    <span class="ld-pill"><i class="fas fa-star" aria-hidden="true"></i>GPA 5.00 / 5.00</span>
+                </li>
+                <li class="ed-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></li>
+                <li class="ld-card ed-card">
+                    <span class="ld-logo"><i class="fas fa-graduation-cap ed-icon" aria-hidden="true"></i></span>
+                    <h3>B.Sc. in Biomedical Engineering</h3>
+                    <p class="ld-org">Department of Biomedical Engineering<br>Jashore University of Science and Technology (JUST)<br>Jashore 7408, Bangladesh</p>
+                    <span class="ld-pill"><i class="fas fa-calendar-alt" aria-hidden="true"></i>Graduated: July 2026</span>
+                    <span class="ld-pill"><i class="fas fa-chart-line" aria-hidden="true"></i>CGPA 3.20 / 4.00</span>
+                    <button type="button" class="ld-open" data-target="ed-bsc" aria-haspopup="dialog">View Details<span class="sr-only">: B.Sc. in Biomedical Engineering, JUST</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                </li>
+            </ol>
+
+            <dialog id="ed-bsc" class="ld-dialog" aria-labelledby="ed-bsc-t">
+                <button type="button" class="ld-close" aria-label="Close dialog"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+                <div class="ld-head"><span class="ld-logo"><i class="fas fa-graduation-cap ed-icon" aria-hidden="true"></i></span><div><h3 id="ed-bsc-t">Bachelor of Science in Biomedical Engineering</h3><p>Department of Biomedical Engineering</p><p>Jashore University of Science and Technology (JUST), Jashore 7408, Bangladesh</p><p class="ld-when"><i class="fas fa-calendar-alt mr-1" aria-hidden="true"></i>Graduated: July 2026</p></div></div>
+                <div class="ld-body">
+                    <div class="ed-cgpa"><div><strong>3.20</strong><span>CGPA</span></div><div><strong>4.00</strong><span>Maximum scale</span></div></div>
+                    <h4>Grading System</h4>
+                    <div class="ed-wrap"><table class="ed-table"><thead><tr><th scope="col">Numerical Grade</th><th scope="col">Letter Grade</th><th scope="col">Grade Point</th></tr></thead><tbody><tr><td>80% or above</td><td>A+</td><td>4.00</td></tr><tr><td>75% to less than 80%</td><td>A</td><td>3.75</td></tr><tr><td>70% to less than 75%</td><td>A-</td><td>3.50</td></tr><tr><td>65% to less than 70%</td><td>B+</td><td>3.25</td></tr><tr><td>60% to less than 65%</td><td>B</td><td>3.00</td></tr><tr><td>55% to less than 60%</td><td>B-</td><td>2.75</td></tr><tr><td>50% to less than 55%</td><td>C+</td><td>2.50</td></tr><tr><td>45% to less than 50%</td><td>C</td><td>2.25</td></tr><tr><td>40% to less than 45%</td><td>C-</td><td>2.00</td></tr><tr><td>Less than 40%</td><td>F</td><td>0.00</td></tr></tbody></table></div>
+                    <h4>Relevant Coursework</h4>
+                    <ul class="ld-ul"><li><i class="fas fa-check" aria-hidden="true"></i><span>Human Assist Devices</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Biomedical Instrumentation and Measurements</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Bioinformatics</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Digital Signal Processing</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Biomaterials and Prosthetics</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Engineering Mechanics</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Basic Electronic Devices and Circuits</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Engineering Physics</span></li></ul>
+                    <a class="ld-link" href="https://drive.google.com/file/d/10L4oI6VHvr--igYnNl4r4inar-sIY67M/view?usp=drivesdk" target="_blank" rel="noopener"><i class="fas fa-file-lines mr-2" aria-hidden="true"></i>View Full Syllabus<span class="sr-only"> (opens in a new tab)</span></a>
+                </div>
+            </dialog>
+        </div>
+    <script>
+    (function(){
+        var sec=document.getElementById('education'),last=null;
+        function openD(d,t){last=t;d.showModal();document.body.classList.add('ld-lock');d.scrollTop=0;requestAnimationFrame(function(){d.classList.add('ld-show')})}
+        function closeD(d){if(!d.open)return;d.classList.remove('ld-show');var done=false,f=function(){if(done)return;done=true;d.close();document.body.classList.remove('ld-lock');if(last)last.focus()};
+            if(matchMedia('(prefers-reduced-motion:reduce)').matches)f();else{d.addEventListener('transitionend',f,{once:true});setTimeout(f,300)}}
+        sec.querySelectorAll('.ld-open').forEach(function(b){b.addEventListener('click',function(){openD(document.getElementById(b.dataset.target),b)})});
+        sec.querySelectorAll('.ld-dialog').forEach(function(d){
+            d.querySelector('.ld-close').addEventListener('click',function(){closeD(d)});
+            d.addEventListener('click',function(e){if(e.target===d)closeD(d)});
+            d.addEventListener('cancel',function(e){e.preventDefault();closeD(d)});
+        });
+    })();
+    </script>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title font-bold text-center mb-4 text-primary">
+                References
+            </h2>
+            <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-accent/10 p-4 rounded-full mr-4 flex-none">
+                            <i class="fas fa-user-tie text-2xl text-accent"></i>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Bachelor of Science in Biomedical Engineering</h3>
-                            <p class="text-lg text-primary font-semibold mb-2">Jashore University of Science and Technology (JUST)</p>
-                            <div class="flex flex-wrap gap-4 mb-4">
-                                <span class="text-gray-600"><i class="fas fa-calendar-alt text-accent mr-2"></i>Expected: June 2026</span>
-                                <span class="text-gray-600"><i class="fas fa-chart-line text-accent mr-2"></i>CGPA: 3.1/4.0</span>
-                                <span class="text-gray-600"><i class="fas fa-book text-coral mr-2"></i>7/8 Semesters Completed</span>
-                            </div>
+                        <div>
+                            <h3 class="fs-lg font-bold text-gray-900">Dr. Md. Zaved Hossain Khan</h3>
+                            <p class="fs-sm text-gray-600 mb-2">Professor and Chairman</p>
                         </div>
                     </div>
-
-                    <div class="border-t border-gray-200 pt-6">
-                        <h4 class="font-bold text-gray-900 mb-4">Relevant Coursework:</h4>
-                        <div class="grid md:grid-cols-2 gap-3">
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Human Assist Devices</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Biomedical Instrumentation and Measurements</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Bioinformatics</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Digital Signal Processing</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Biomaterials and Prosthetics</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Engineering Mechanics</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Basic Electronic Devices and Circuits</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-check text-accent mr-2"></i>
-                                <span>Engineering Physics</span>
-                            </div>
+                    <div class="space-y-2 fs-sm text-gray-700">
+                        <p><strong>Department:</strong> Chemical Engineering</p>
+                        <p><strong>Director:</strong> NAME Lab (Nano-bio and Advanced Materials Engineering)</p>
+                        <p><strong>Institution:</strong> Jashore University of Science and Technology, Jashore 7408, Bangladesh</p>
+                        <p class="pt-3 border-t border-gray-200">
+                            <i class="fas fa-envelope text-accent mr-2"></i>
+                            <a href="mailto:zaved.khan@yahoo.com" class="text-accent hover:text-primary transition break-all">zaved.khan@yahoo.com</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-accent/10 p-4 rounded-full mr-4 flex-none">
+                            <i class="fas fa-user-tie text-2xl text-accent"></i>
                         </div>
+                        <div>
+                            <h3 class="fs-lg font-bold text-gray-900">Dr. Hassan Mohammad Al Emran</h3>
+                            <p class="fs-sm text-gray-600 mb-2">Associate Professor and Chairman</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 fs-sm text-gray-700">
+                        <p><strong>Department:</strong> Biomedical Engineering</p>
+                        <p><strong>Institution:</strong> Jashore University of Science and Technology, Jashore 7408, Bangladesh</p>
+                        <p class="pt-3 border-t border-gray-200">
+                            <i class="fas fa-envelope text-accent mr-2"></i>
+                            <a href="mailto:al.emran@just.edu.bd" class="text-accent hover:text-primary transition break-all">al.emran@just.edu.bd</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-accent/10 p-4 rounded-full mr-4 flex-none">
+                            <i class="fas fa-user-tie text-2xl text-accent"></i>
+                        </div>
+                        <div>
+                            <h3 class="fs-lg font-bold text-gray-900">Md. Faisal Mina</h3>
+                            <p class="fs-sm text-gray-600 mb-2">Lecturer</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 fs-sm text-gray-700">
+                        <p><strong>Department:</strong> Biomedical Engineering</p>
+                        <p><strong>Institution:</strong> Jashore University of Science and Technology, Jashore 7408, Bangladesh</p>
+                        <p class="pt-3 border-t border-gray-200">
+                            <i class="fas fa-envelope text-accent mr-2"></i>
+                            <a href="mailto:mf.mina@just.edu.bd" class="text-accent hover:text-primary transition break-all">mf.mina@just.edu.bd</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact / Let's Connect -->
     <section id="contact" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 text-primary">
-                Get In Touch
-            </h2>
-            <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
-
             <div class="max-w-4xl mx-auto">
-                <!-- Contact Info Cards -->
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <!-- Email Card -->
-                    <div class="bg-white rounded-2xl p-8 border border-accent/20 hover:shadow-2xl transition-all duration-300 group">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-accent p-4 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                <i class="fas fa-envelope text-white text-3xl"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-medium text-gray-600 mb-1">Email Address</div>
-                                <a href="mailto:201910.bme@student.just.edu.bd" class="text-xl font-bold text-gray-900 hover:text-accent transition">
-                                    201910.bme@student.just.edu.bd
-                                </a>
-                                <div class="text-sm text-gray-600 mt-2">
-                                    <div>
-                                        Alternate: <a href="mailto:inzamamulshishir1@gmail.com" class="text-accent hover:text-primary transition font-semibold">inzamamulshishir1@gmail.com</a>
-                                    </div>
-                                    <div class="mt-1">
-                                        Phone: <a href="tel:01314236116" class="text-accent hover:text-primary transition font-semibold">01314236116</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm">Feel free to reach out via email for collaborations, research opportunities, or inquiries.</p>
-                    </div>
-
-                    <!-- Location Card -->
-                    <div class="bg-white rounded-2xl p-8 border border-accent/20 hover:shadow-2xl transition-all duration-300 group">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-accent p-4 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                <i class="fas fa-map-marker-alt text-white text-3xl"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-medium text-gray-600 mb-1">Location</div>
-                                <div class="text-lg font-bold text-gray-900">Jashore, Bangladesh</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm">
-                            Department of Biomedical Engineering<br>
-                            Jashore University of Science and Technology<br>
-                            Jashore-7408, Bangladesh
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Social Media Connect Card -->
-                <div class="bg-gradient-to-r from-primary via-purple to-accent text-white rounded-2xl p-10 shadow-2xl hover:shadow-accent/30 transition-all duration-300">
+                <!-- Social Media Connect Card (gradient no longer passes through light cyan: contrast fix) -->
+                <div class="bg-gradient-to-r from-primary to-accent text-white rounded-2xl p-10 shadow-2xl hover:shadow-accent/30 transition-all duration-300">
                     <div class="text-center mb-8">
                         <h3 class="text-3xl font-bold mb-3">Let's Connect!</h3>
-                        <p class="text-white/90 text-lg">Follow my research journey and connect on social media</p>
+                        <p class="text-white text-lg">Follow my research journey and connect on social media</p>
                     </div>
                     <div class="flex justify-center gap-6">
                         <a href="https://linkedin.com/in/inzamamul-haque-shishir6116" target="_blank" 
@@ -905,63 +922,7 @@
                         </a>
                     </div>
                     <div class="text-center mt-8 pt-8 border-t border-white/20">
-                        <p class="text-white/80 text-sm">Open to research collaborations and networking opportunities</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-     <!-- References Section -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                References
-            </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-12"></div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Reference 1 -->
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-                    <div class="flex items-start mb-4">
-                        <div class="bg-accent/10 p-4 rounded-full mr-4">
-                            <i class="fas fa-user-tie text-2xl text-accent"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900">Dr. Md. Zaved Hossain Khan</h3>
-                            <p class="text-sm text-gray-600 mb-2">Professor and Chairman</p>
-                        </div>
-                    </div>
-                    <div class="space-y-2 text-sm text-gray-700">
-                        <p><strong>Department:</strong> Chemical Engineering</p>
-                        <p><strong>Director:</strong> NAME Lab (Nano-bio and Advanced Materials Engineering)</p>
-                        <p><strong>Institution:</strong> Jashore University of Science and Technology</p>
-                        <p class="pt-3 border-t border-gray-200">
-                            <i class="fas fa-envelope text-accent mr-2"></i>
-                            <a href="mailto:zaved.khan@yahoo.com" class="text-accent hover:text-accent transition">zaved.khan@yahoo.com</a>
-                        </p>
-                        
-                    </div>
-                </div>
-
-                <!-- Reference 2 -->
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-                    <div class="flex items-start mb-4">
-                        <div class="bg-accent/10 p-4 rounded-full mr-4">
-                            <i class="fas fa-user-tie text-2xl text-accent"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900">Md. Faisal Mina</h3>
-                            <p class="text-sm text-gray-600 mb-2">Lecturer</p>
-                        </div>
-                    </div>
-                    <div class="space-y-2 text-sm text-gray-700">
-                        <p><strong>Department:</strong> Biomedical Engineering</p>
-                        <p><strong>Institution:</strong> Jashore University of Science and Technology</p>
-                        <p class="pt-3 border-t border-gray-200">
-                            <i class="fas fa-envelope text-accent mr-2"></i>
-                            <a href="mailto:mf.mina@just.edu.bd" class="text-accent hover:text-accent transition">mf.mina@just.edu.bd</a>
-                        </p>
-                        
+                        <p class="text-white fs-sm">Open to research collaborations and networking opportunities</p>
                     </div>
                 </div>
             </div>
@@ -973,7 +934,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    <h3 class="fs-lg font-bold mb-4 text-white">
                         Inzamamul Haque
                     </h3>
                     <p class="text-gray-400 leading-relaxed">
@@ -994,19 +955,19 @@
                     <h4 class="font-bold mb-4">Connect</h4>
                     <div class="flex gap-4 mb-4">
                         <a href="https://linkedin.com/in/inzamamul-haque-shishir6116" target="_blank" 
-                           class="bg-white/10 hover:bg-accent p-3 rounded-lg transition transform hover:scale-110">
+                           class="bg-white/10 hover:bg-accent p-3 rounded-lg transition transform hover:scale-110" aria-label="LinkedIn">
                             <i class="fab fa-linkedin text-xl"></i>
                         </a>
                         <a href="https://researchgate.net/profile/Mdinzamamul-Shishir" target="_blank" 
-                           class="bg-white/10 hover:bg-accent p-3 rounded-lg transition transform hover:scale-110">
+                           class="bg-white/10 hover:bg-accent p-3 rounded-lg transition transform hover:scale-110" aria-label="ResearchGate">
                             <i class="fab fa-researchgate text-xl"></i>
                         </a>
                         <a href="mailto:201910.bme@student.just.edu.bd" 
-                           class="bg-white/10 hover:bg-coral p-3 rounded-lg transition transform hover:scale-110">
+                           class="bg-white/10 hover:bg-coral p-3 rounded-lg transition transform hover:scale-110" aria-label="Email">
                             <i class="fas fa-envelope text-xl"></i>
                         </a>
                         <a href="https://github.com/inzamamulshishir1-ctrl" target="_blank" 
-                           class="bg-white/10 hover:bg-accent p-3 rounded-lg transition transform hover:scale-110">
+                           class="bg-white/10 hover:bg-accent p-3 rounded-lg transition transform hover:scale-110" aria-label="GitHub">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
